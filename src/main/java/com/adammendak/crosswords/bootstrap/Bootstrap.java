@@ -8,6 +8,6 @@ public class Bootstrap implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println("Hello World");
+        System.out.println("Test Bootstrapa aplikacji");
     }
 }
