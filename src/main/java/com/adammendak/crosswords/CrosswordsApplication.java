@@ -11,8 +11,10 @@ import javafx.stage.WindowEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
+@EnableJpaRepositories
 public class CrosswordsApplication extends Application {
 
     private ConfigurableApplicationContext springContext;
@@ -37,6 +39,7 @@ public class CrosswordsApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        fxmlLoader.setLocation(getClass().getResource("/fxml/main.fxml"));
         rootNode = fxmlLoader.load();
 
         primaryStage.setTitle("Crosswords Application");

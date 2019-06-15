@@ -1,3 +1,27 @@
-.button {
-    -fx-background-color: red;
+.menuButton {
+    -fx-background-color: turquoise;
+    -fx-min-width: 200px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+    -fx-border-color: white;
+    -fx-alignment: center ;
+}
+
+.menuButton:hover {
+    -fx-font-weight: bold;
+}
+
+.toolBar {
+    -fx-background-color: lightgray;
+    -fx-min-width: 200px;
+}
+
+.borderPane {
+    -fx-background-color: lightgray;
+}
+
+.welcomeLabel {
+    -fx-text-alignment: center;
+    -fx-font-weight: 20px;
+    -fx-alignment: center ;
 }
