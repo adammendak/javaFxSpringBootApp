@@ -1,13 +1,17 @@
 package com.adammendak.crosswords.controller;
 
 import com.adammendak.crosswords.utils.AppState;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 @Controller
+@Slf4j
 public class MainController {
 
     @FXML
@@ -53,6 +57,9 @@ public class MainController {
     private Button cleanEntries;
 
     @FXML
+    private Button manageUsers;
+
+    @FXML
     private void initialize() {
         author.setText(authorValue);
         date.setText(dateValue);
@@ -63,6 +70,13 @@ public class MainController {
         if(AppState.user != null) {
             user.setText(AppState.user.getUserName());
         }
+
+    }
+
+    @FXML
+    private void manageUsers(ActionEvent e) {
+        log.info("#### BUTTON CLICKED");
+        System.out.println("DUPA ");
     }
 
 }

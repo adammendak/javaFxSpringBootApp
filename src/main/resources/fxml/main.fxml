@@ -15,7 +15,7 @@
           <Button fx:id="showCrosswordEntries" mnemonicParsing="false" styleClass="menuButton" text="Pokaz hasla" textAlignment="CENTER" />
             <Button fx:id="addCrosswordEntry" mnemonicParsing="false" styleClass="menuButton" text="Dodaj hasło" />
             <Button fx:id="cleanEntries" mnemonicParsing="false" styleClass="menuButton" text="Wyczyść hasła" />
-            <Button mnemonicParsing="false" text="Zmień użytkownika">
+            <Button fx:id="manageUsers" mnemonicParsing="false" onAction="#manageUsers" text="Zmień użytkownika">
                <styleClass>
                   <String fx:value="welcomeLabel" />
                   <String fx:value="menuButton" />

@@ -25,3 +25,13 @@
     -fx-font-weight: 20px;
     -fx-alignment: center ;
 }
+
+.cancelButton {
+    -fx-background-color: red;
+    -fx-font-weight: bold;
+}
+
+.okButton {
+    -fx-background-color: green;
+    -fx-font-weight: bold;
+}
