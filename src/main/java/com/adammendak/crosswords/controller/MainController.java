@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @Slf4j
@@ -96,8 +97,8 @@ public class MainController {
         UserController dialogController = fxmlLoader.<UserController>getController();
 
         List<User> users = userService.getAllUsers();
-        ObservableList<User> observableList = FXCollections.observableList(users);
-        dialogController.getChoiceBoxUser().setItems(observableList);
+        List<String> userNames = users.stream().map(x -> x.getUserName()).collect(Collectors.toList());
+        dialogController.getChoiceBoxUser().setItems(FXCollections.observableList(userNames));
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
@@ -105,6 +106,17 @@ public class MainController {
         stage.setScene(scene);
         stage.showAndWait();
 
+        setUserInState(AppState.userName);
+
+    }
+
+    private void setUserInState(String userName) {
+        User userFromDB = userService.getUserByName(userName);
+        AppState.setUser(userFromDB);
+
+        if(AppState.user != null) {
+            user.setText(AppState.user.getUserName());
+        }
     }
 
 }

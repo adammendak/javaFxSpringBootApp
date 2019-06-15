@@ -1,8 +1,6 @@
 package com.adammendak.crosswords.controller;
 
-import com.adammendak.crosswords.domain.User;
-import com.adammendak.crosswords.service.UserService;
-import javafx.collections.ObservableList;
+import com.adammendak.crosswords.utils.AppState;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,7 +19,7 @@ import org.springframework.stereotype.Controller;
 public class UserController {
 
     @FXML
-    private ChoiceBox<User> choiceBoxUser;
+    private ChoiceBox<String> choiceBoxUser;
 
     @FXML
     public void initialize() {
@@ -30,7 +28,17 @@ public class UserController {
     @FXML
     private Button closeButton;
 
+    @FXML
+    private Button okButton;
+
     private static Dialog dialog;
+
+    @FXML
+    public void setUser(ActionEvent actionEvent) {
+        AppState.setUserName(choiceBoxUser.getValue());
+        Stage stage = (Stage) closeButton.getScene().getWindow();
+        stage.close();
+    }
 
     @FXML
     public void close(ActionEvent actionEvent) {
