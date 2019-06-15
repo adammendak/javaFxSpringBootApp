@@ -3,6 +3,8 @@ package com.adammendak.crosswords.domain;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,7 +21,8 @@ public class User {
 
     private String userName;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private List<CrosswordEntry> entries;
 
     @Override

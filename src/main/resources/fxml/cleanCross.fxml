@@ -4,10 +4,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="344.0" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.adammendak.crosswords.controller.CleanController" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="196.0" prefWidth="344.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.adammendak.crosswords.controller.CleanController">
    <children>
-      <Label fx:id="infoText" alignment="CENTER" layoutX="57.0" layoutY="37.0" prefHeight="40.0" prefWidth="231.0" text="placeholder" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="57.0" />
-      <Button fx:id="okButton" onAction="#close" layoutX="143.0" layoutY="140.0" mnemonicParsing="false" text="Button" />
+      <Label fx:id="infoText" alignment="CENTER" layoutX="8.0" layoutY="37.0" prefHeight="40.0" prefWidth="331.0" text="placeholder" AnchorPane.bottomAnchor="119.0" AnchorPane.leftAnchor="8.0" />
+      <Button fx:id="okButton" layoutX="154.0" layoutY="143.0" mnemonicParsing="false" onAction="#close" styleClass="okButton" text="Ok" />
    </children>
 </AnchorPane>

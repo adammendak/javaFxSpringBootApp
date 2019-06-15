@@ -1,6 +1,7 @@
 package com.adammendak.crosswords.controller;
 
 import com.adammendak.crosswords.domain.User;
+import com.adammendak.crosswords.service.CrosswordEntryService;
 import com.adammendak.crosswords.service.UserService;
 import com.adammendak.crosswords.utils.AppState;
 import javafx.collections.FXCollections;
@@ -29,6 +30,7 @@ import java.util.stream.Collectors;
 public class MainController {
 
     private final UserService userService;
+    private final CrosswordEntryService crosswordEntryService;
 
     @FXML
     private Label author;
@@ -90,8 +92,18 @@ public class MainController {
     }
 
     @FXML
-    private void cleanCrosswordEntries() {
-        System.out.println("DUPAAAA");
+    private void cleanCrosswordEntries() throws IOException{
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cleanCross.fxml"));
+        Parent parent = fxmlLoader.load();
+        CleanController cleanController = fxmlLoader.<CleanController>getController();
+        if(AppState.user != null) {
+            cleanController.getInfoText().setText("Czyścimy dla użytkownika: " + AppState.userName);
+            userService.deleteAllCrossEntriesForUser(AppState.user);
+        } else {
+            cleanController.getInfoText().setText("Wybierz najpierw użytkownika !");
+        }
+
+        setScene(parent);
 
     }
 
@@ -106,11 +118,7 @@ public class MainController {
         List<String> userNames = users.stream().map(x -> x.getUserName()).collect(Collectors.toList());
         dialogController.getChoiceBoxUser().setItems(FXCollections.observableList(userNames));
 
-        Scene scene = new Scene(parent);
-        Stage stage = new Stage();
-        stage.initModality(Modality.APPLICATION_MODAL);
-        stage.setScene(scene);
-        stage.showAndWait();
+        setScene(parent);
 
         setUserInState(AppState.userName);
 
@@ -123,6 +131,14 @@ public class MainController {
         if(AppState.user != null) {
             user.setText(AppState.user.getUserName());
         }
+    }
+
+    private void setScene(Parent parent) {
+        Scene scene = new Scene(parent);
+        Stage stage = new Stage();
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setScene(scene);
+        stage.showAndWait();
     }
 
 }
