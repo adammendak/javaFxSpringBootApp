@@ -1,8 +1,10 @@
 package com.adammendak.crosswords.controller;
 
-import com.adammendak.crosswords.service.CrosswordEntryService;
+import com.adammendak.crosswords.domain.User;
 import com.adammendak.crosswords.service.UserService;
 import com.adammendak.crosswords.utils.AppState;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,18 +14,20 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.util.List;
 
 @Controller
 @Slf4j
 @RequiredArgsConstructor
 public class MainController {
+
+    private final UserService userService;
 
     @FXML
     private Label author;
@@ -86,8 +90,14 @@ public class MainController {
 
     @FXML
     private void manageUsers(ActionEvent e) throws IOException {
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/user.fxml"));
         Parent parent = fxmlLoader.load();
+        UserController dialogController = fxmlLoader.<UserController>getController();
+
+        List<User> users = userService.getAllUsers();
+        ObservableList<User> observableList = FXCollections.observableList(users);
+        dialogController.getChoiceBoxUser().setItems(observableList);
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();

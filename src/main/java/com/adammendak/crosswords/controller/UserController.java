@@ -1,34 +1,30 @@
 package com.adammendak.crosswords.controller;
 
+import com.adammendak.crosswords.domain.User;
 import com.adammendak.crosswords.service.UserService;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
-import java.net.URL;
-import java.util.ResourceBundle;
 
 @RequiredArgsConstructor
 @Controller
 @Setter
 @Getter
-public class UserController implements Initializable {
+public class UserController {
 
-    @Autowired
-    private UserService userService;
+    @FXML
+    private ChoiceBox<User> choiceBoxUser;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("CHUUUUJ");
+    @FXML
+    public void initialize() {
     }
 
     @FXML
