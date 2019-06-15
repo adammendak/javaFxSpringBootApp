@@ -1,6 +1,8 @@
 package com.adammendak.crosswords.controller;
 
 
+import com.adammendak.crosswords.domain.CrosswordEntry;
+import com.adammendak.crosswords.utils.AppState;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -37,6 +39,12 @@ public class NewCrossEntryController {
 
     @FXML
     private void save() {
+        CrosswordEntry crosswordEntry = new CrosswordEntry();
+        crosswordEntry.setValue(valueField.getText());
+        crosswordEntry.setDescription(descriptionArea.getText());
+        crosswordEntry.setUser(AppState.user);
+        AppState.setCrosswordEntry(crosswordEntry);
+
         Stage stage = (Stage) okButton.getScene().getWindow();
         stage.close();
     }
