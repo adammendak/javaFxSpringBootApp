@@ -91,6 +91,22 @@ public class MainController {
     }
 
     @FXML
+    private void addNewCrosswordEntrie() throws IOException {
+        if(AppState.user == null) {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
+            Parent parent = fxmlLoader.load();
+            InfoController infoController = fxmlLoader.<InfoController>getController();
+            infoController.getInfoText().setText("Wybierz najpierw użytkownika !");
+            setScene(parent);
+        } else {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/newCross.fxml"));
+            Parent parent = fxmlLoader.load();
+            NewCrossEntryController infoController = fxmlLoader.<NewCrossEntryController>getController();
+            setScene(parent);
+        }
+    }
+
+    @FXML
     private void cleanCrosswordEntries() throws IOException{
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
         Parent parent = fxmlLoader.load();
