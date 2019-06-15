@@ -88,7 +88,6 @@ public class MainController {
     private void manageUsers(ActionEvent e) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/user.fxml"));
         Parent parent = fxmlLoader.load();
-        UserController dialogController = fxmlLoader.<UserController>getController();
 
         Scene scene = new Scene(parent);
         Stage stage = new Stage();
