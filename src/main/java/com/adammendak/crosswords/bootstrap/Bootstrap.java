@@ -29,23 +29,23 @@ public class Bootstrap implements CommandLineRunner {
         lukeUser.setUserName("Luke Skywalker");
 
         CrosswordEntry crosswordEntryVader1 = new CrosswordEntry();
-        crosswordEntryVader1.setValue("test haslo Vader 1");
-        crosswordEntryVader1.setDescription("test haslo Vader 1");
+        crosswordEntryVader1.setValue("tasdf1");
+        crosswordEntryVader1.setDescription("test asdfa12");
         crosswordEntryVader1.setUser(vaderUser);
 
         CrosswordEntry crosswordEntryVader2 = new CrosswordEntry();
-        crosswordEntryVader2.setValue("test haslo Vader 2");
-        crosswordEntryVader2.setDescription("test haslo Vader 2");
+        crosswordEntryVader2.setValue("asd");
+        crosswordEntryVader2.setDescription("dddddd");
         crosswordEntryVader2.setUser(vaderUser);
 
         CrosswordEntry crosswordEntryLuke1 = new CrosswordEntry();
-        crosswordEntryLuke1.setValue("test haslo Luke 1");
-        crosswordEntryLuke1.setDescription("test haslo Luke 1");
+        crosswordEntryLuke1.setValue("aaatasdfasdf");
+        crosswordEntryLuke1.setDescription("xxsadf");
         crosswordEntryLuke1.setUser(lukeUser);
 
         CrosswordEntry crosswordEntryLuke2 = new CrosswordEntry();
-        crosswordEntryLuke2.setValue("test haslo Luke 1");
-        crosswordEntryLuke2.setDescription("test haslo Luke 1");
+        crosswordEntryLuke2.setValue("asfwwww");
+        crosswordEntryLuke2.setDescription("qwerqwerwqer");
         crosswordEntryLuke2.setUser(lukeUser);
 
         vaderUser.setEntries(Lists.newArrayList(crosswordEntryVader1, crosswordEntryVader2));

@@ -35,11 +35,10 @@ public class UserService {
 
     @Transactional
     public void deleteAllCrossEntriesForUser(User user) {
+        log.info("#### deleting all entires for user : " + user.getUserName());
         Optional<User> userOptional = userRepository.findByUserName(user.getUserName());
         userOptional.ifPresent(x -> {
-            x.getEntries().forEach(crosswordEntry -> {
-                crosswordEntryRepository.delete(crosswordEntry);
-            });
+            x.getEntries().forEach(crosswordEntryRepository::delete);
             x.getEntries().clear();
             userRepository.save(x);
         });
