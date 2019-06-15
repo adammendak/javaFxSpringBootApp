@@ -91,7 +91,7 @@ public class MainController {
     }
 
     @FXML
-    private void addNewCrosswordEntrie() throws IOException {
+    private void addNewCrosswordEntry() throws IOException {
         if(AppState.user == null) {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
             Parent parent = fxmlLoader.load();
@@ -101,8 +101,24 @@ public class MainController {
         } else {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/newCross.fxml"));
             Parent parent = fxmlLoader.load();
-            NewCrossEntryController infoController = fxmlLoader.<NewCrossEntryController>getController();
+            NewCrossEntryController newCrossEntryController = fxmlLoader.<NewCrossEntryController>getController();
             setScene(parent);
+
+            if(AppState.crosswordEntry.getDescription().length() == 0 ||
+               AppState.crosswordEntry.getDescription() == null ||
+               AppState.crosswordEntry.getValue().length() == 0  ||
+               AppState.crosswordEntry.getValue() == null) {
+                FXMLLoader fxmlLoaderCheck = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
+                Parent parentCheck = fxmlLoaderCheck.load();
+                InfoController infoControllerCheck = fxmlLoaderCheck.<InfoController>getController();
+                infoControllerCheck.getInfoText().setText("Niepoprawne dane !");
+                setScene(parentCheck);
+                AppState.crosswordEntry = null;
+            } else {
+                crosswordEntryService.saveCrossword(AppState.crosswordEntry);
+                AppState.crosswordEntry = null;
+            }
+
         }
     }
 

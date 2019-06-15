@@ -13,7 +13,7 @@
       <ToolBar minWidth="200.0" orientation="VERTICAL" prefHeight="453.0" prefWidth="209.0" styleClass="toolBar" BorderPane.alignment="CENTER">
         <items>
           <Button fx:id="showCrosswordEntries" mnemonicParsing="false" styleClass="menuButton" text="Pokaz hasla" textAlignment="CENTER" />
-            <Button fx:id="addCrosswordEntry" onAction="#addNewCrosswordEntrie" mnemonicParsing="false" styleClass="menuButton" text="Dodaj hasło" />
+            <Button fx:id="addCrosswordEntry" onAction="#addNewCrosswordEntry" mnemonicParsing="false" styleClass="menuButton" text="Dodaj hasło" />
             <Button fx:id="cleanEntries" onAction="#cleanCrosswordEntries" mnemonicParsing="false" styleClass="menuButton" text="Wyczyść hasła" />
             <Button fx:id="manageUsers" mnemonicParsing="false" onAction="#manageUsers" text="Zmień użytkownika">
                <styleClass>
