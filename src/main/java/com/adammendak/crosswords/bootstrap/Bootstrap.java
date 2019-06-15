@@ -2,7 +2,6 @@ package com.adammendak.crosswords.bootstrap;
 
 import com.adammendak.crosswords.domain.CrosswordEntry;
 import com.adammendak.crosswords.domain.User;
-import com.adammendak.crosswords.service.CrosswordEntryService;
 import com.adammendak.crosswords.service.UserService;
 import com.google.common.collect.Lists;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,6 @@ import org.springframework.stereotype.Component;
 public class Bootstrap implements CommandLineRunner {
 
     private final UserService userService;
-    private final CrosswordEntryService crosswordEntryService;
 
     @Override
     public void run(String... args) throws Exception {

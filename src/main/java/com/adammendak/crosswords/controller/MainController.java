@@ -5,7 +5,6 @@ import com.adammendak.crosswords.service.CrosswordEntryService;
 import com.adammendak.crosswords.service.UserService;
 import com.adammendak.crosswords.utils.AppState;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -93,14 +92,14 @@ public class MainController {
 
     @FXML
     private void cleanCrosswordEntries() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/cleanCross.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
         Parent parent = fxmlLoader.load();
-        CleanController cleanController = fxmlLoader.<CleanController>getController();
+        InfoController infoController = fxmlLoader.<InfoController>getController();
         if(AppState.user != null) {
-            cleanController.getInfoText().setText("Czyścimy dla użytkownika: " + AppState.userName);
+            infoController.getInfoText().setText("Czyścimy dla użytkownika: " + AppState.userName);
             userService.deleteAllCrossEntriesForUser(AppState.user);
         } else {
-            cleanController.getInfoText().setText("Wybierz najpierw użytkownika !");
+            infoController.getInfoText().setText("Wybierz najpierw użytkownika !");
         }
 
         setScene(parent);

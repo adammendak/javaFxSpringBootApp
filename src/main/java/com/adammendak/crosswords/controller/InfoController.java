@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 @Setter
 @Getter
-public class CleanController {
+public class InfoController {
 
     @FXML
     private Button okButton;
