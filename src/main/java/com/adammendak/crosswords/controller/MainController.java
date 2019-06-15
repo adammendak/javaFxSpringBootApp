@@ -172,8 +172,8 @@ public class MainController {
                 AppState.crosswordEntry.getDescription() == null  ||
                 AppState.crosswordEntry.getValue().length() == 0  ||
                 AppState.crosswordEntry.getValue() == null) {
-            setInfoMessage("Dane nie moga byc puste !");
             AppState.crosswordEntry = null;
+            setInfoMessage("Dane nie moga byc puste !");
         } else {
             crosswordEntryService.saveCrossword(AppState.crosswordEntry);
             AppState.crosswordEntry = null;
