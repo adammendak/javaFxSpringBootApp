@@ -12,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +22,8 @@ import org.springframework.stereotype.Controller;
 import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static com.adammendak.crosswords.utils.Constants.*;
 
 @Controller
 @Slf4j
@@ -110,7 +111,7 @@ public class MainController {
 
     @FXML
     private void manageUsers(ActionEvent e) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/user.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(USER_PATH));
         Parent parent = fxmlLoader.load();
         UserController dialogController = fxmlLoader.<UserController>getController();
 
@@ -119,14 +120,13 @@ public class MainController {
         dialogController.getChoiceBoxUser().setItems(FXCollections.observableList(userNames));
 
         setScene(parent);
-
         setUserInState(AppState.userName);
 
     }
 
     @FXML
     private void cleanCrosswordEntries() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(INFO_PATH));
         Parent parent = fxmlLoader.load();
         InfoController infoController = fxmlLoader.<InfoController>getController();
         if(AppState.user != null) {
@@ -137,11 +137,10 @@ public class MainController {
         }
 
         setScene(parent);
-
     }
 
     private void noUserSelected() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(INFO_PATH));
         Parent parent = fxmlLoader.load();
         InfoController infoController = fxmlLoader.<InfoController>getController();
         infoController.getInfoText().setText("Wybierz najpierw użytkownika !");
@@ -149,7 +148,7 @@ public class MainController {
     }
 
     private void showCrosswordEntriesForUser() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/table.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(TABLE_PATH));
         Parent parent = fxmlLoader.load();
         TableController tableController = fxmlLoader.<TableController>getController();
         tableController.getUserTextLabel().setText("Hasła użytkownika " + AppState.userName);
@@ -174,7 +173,7 @@ public class MainController {
     }
 
     private void checkAndSaveCrossEntry() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/newCross.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(NEW_CROSS_PATH));
         Parent parent = fxmlLoader.load();
         setScene(parent);
 
@@ -182,7 +181,7 @@ public class MainController {
                 AppState.crosswordEntry.getDescription() == null  ||
                 AppState.crosswordEntry.getValue().length() == 0  ||
                 AppState.crosswordEntry.getValue() == null) {
-            FXMLLoader fxmlLoaderCheck = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
+            FXMLLoader fxmlLoaderCheck = new FXMLLoader(getClass().getResource(INFO_PATH));
             Parent parentCheck = fxmlLoaderCheck.load();
             InfoController infoControllerCheck = fxmlLoaderCheck.<InfoController>getController();
             infoControllerCheck.getInfoText().setText("Dane nie moga byc puste ! ");
@@ -191,12 +190,13 @@ public class MainController {
         } else {
             crosswordEntryService.saveCrossword(AppState.crosswordEntry);
             AppState.crosswordEntry = null;
-            FXMLLoader savedFxml = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
+            FXMLLoader savedFxml = new FXMLLoader(getClass().getResource(INFO_PATH));
             Parent parentCheck = savedFxml.load();
             InfoController infoControllerCheck = savedFxml.<InfoController>getController();
             infoControllerCheck.getInfoText().setText("Hasło Zapisane ! ");
             setScene(parentCheck);
         }
+
     }
 
 }
