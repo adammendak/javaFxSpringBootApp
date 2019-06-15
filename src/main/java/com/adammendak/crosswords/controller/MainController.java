@@ -126,25 +126,16 @@ public class MainController {
 
     @FXML
     private void cleanCrosswordEntries() throws IOException{
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(INFO_PATH));
-        Parent parent = fxmlLoader.load();
-        InfoController infoController = fxmlLoader.<InfoController>getController();
         if(AppState.user != null) {
-            infoController.getInfoText().setText("Czyścimy dla użytkownika: " + AppState.userName);
+            setInfoMessage("Czyścimy dla użytkownika: " + AppState.userName);
             userService.deleteAllCrossEntriesForUser(AppState.user);
         } else {
-            infoController.getInfoText().setText("Wybierz najpierw użytkownika !");
+            setInfoMessage("Wybierz najpierw użytkownika !");
         }
-
-        setScene(parent);
     }
 
     private void noUserSelected() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(INFO_PATH));
-        Parent parent = fxmlLoader.load();
-        InfoController infoController = fxmlLoader.<InfoController>getController();
-        infoController.getInfoText().setText("Wybierz najpierw użytkownika !");
-        setScene(parent);
+        setInfoMessage("Wybierz najpierw użytkownika !");
     }
 
     private void showCrosswordEntriesForUser() throws IOException {
@@ -181,22 +172,21 @@ public class MainController {
                 AppState.crosswordEntry.getDescription() == null  ||
                 AppState.crosswordEntry.getValue().length() == 0  ||
                 AppState.crosswordEntry.getValue() == null) {
-            FXMLLoader fxmlLoaderCheck = new FXMLLoader(getClass().getResource(INFO_PATH));
-            Parent parentCheck = fxmlLoaderCheck.load();
-            InfoController infoControllerCheck = fxmlLoaderCheck.<InfoController>getController();
-            infoControllerCheck.getInfoText().setText("Dane nie moga byc puste ! ");
-            setScene(parentCheck);
+            setInfoMessage("Dane nie moga byc puste !");
             AppState.crosswordEntry = null;
         } else {
             crosswordEntryService.saveCrossword(AppState.crosswordEntry);
             AppState.crosswordEntry = null;
-            FXMLLoader savedFxml = new FXMLLoader(getClass().getResource(INFO_PATH));
-            Parent parentCheck = savedFxml.load();
-            InfoController infoControllerCheck = savedFxml.<InfoController>getController();
-            infoControllerCheck.getInfoText().setText("Hasło Zapisane ! ");
-            setScene(parentCheck);
+            setInfoMessage("Hasło Zapisane !");
         }
 
     }
 
+    private void setInfoMessage(String s) throws IOException {
+        FXMLLoader savedFxml = new FXMLLoader(getClass().getResource(INFO_PATH));
+        Parent parentCheck = savedFxml.load();
+        InfoController infoControllerCheck = savedFxml.<InfoController>getController();
+        infoControllerCheck.getInfoText().setText(s);
+        setScene(parentCheck);
+    }
 }
