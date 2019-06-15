@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Dialog;
 import javafx.stage.Stage;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -22,16 +21,10 @@ public class UserController {
     private ChoiceBox<String> choiceBoxUser;
 
     @FXML
-    public void initialize() {
-    }
-
-    @FXML
     private Button closeButton;
 
     @FXML
     private Button okButton;
-
-    private static Dialog dialog;
 
     @FXML
     public void setUser(ActionEvent actionEvent) {
