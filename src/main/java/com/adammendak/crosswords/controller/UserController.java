@@ -2,13 +2,16 @@ package com.adammendak.crosswords.controller;
 
 import com.adammendak.crosswords.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
-@Component
 @RequiredArgsConstructor
+@Controller
 public class UserController {
 
-    private final UserService userService;
+    @Autowired
+    private UserService userService;
+
 
 
 }
