@@ -90,6 +90,12 @@ public class MainController {
     }
 
     @FXML
+    private void cleanCrosswordEntries() {
+        System.out.println("DUPAAAA");
+
+    }
+
+    @FXML
     private void manageUsers(ActionEvent e) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/user.fxml"));
