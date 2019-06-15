@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import lombok.RequiredArgsConstructor;
@@ -87,20 +88,40 @@ public class MainController {
         if(AppState.user != null) {
             user.setText(AppState.user.getUserName());
         }
+    }
 
+    @FXML
+    private void showCrosswordEntries() throws IOException {
+        if(AppState.user == null) {
+            noUserSelected();
+        } else {
+            showCrosswordEntriesForUser();
+        }
     }
 
     @FXML
     private void addNewCrosswordEntry() throws IOException {
         if(AppState.user == null) {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
-            Parent parent = fxmlLoader.load();
-            InfoController infoController = fxmlLoader.<InfoController>getController();
-            infoController.getInfoText().setText("Wybierz najpierw użytkownika !");
-            setScene(parent);
+            noUserSelected();
         } else {
             checkAndSaveCrossEntry();
         }
+    }
+
+    @FXML
+    private void manageUsers(ActionEvent e) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/user.fxml"));
+        Parent parent = fxmlLoader.load();
+        UserController dialogController = fxmlLoader.<UserController>getController();
+
+        List<User> users = userService.getAllUsers();
+        List<String> userNames = users.stream().map(x -> x.getUserName()).collect(Collectors.toList());
+        dialogController.getChoiceBoxUser().setItems(FXCollections.observableList(userNames));
+
+        setScene(parent);
+
+        setUserInState(AppState.userName);
+
     }
 
     @FXML
@@ -119,21 +140,20 @@ public class MainController {
 
     }
 
-    @FXML
-    private void manageUsers(ActionEvent e) throws IOException {
-
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/user.fxml"));
+    private void noUserSelected() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
         Parent parent = fxmlLoader.load();
-        UserController dialogController = fxmlLoader.<UserController>getController();
-
-        List<User> users = userService.getAllUsers();
-        List<String> userNames = users.stream().map(x -> x.getUserName()).collect(Collectors.toList());
-        dialogController.getChoiceBoxUser().setItems(FXCollections.observableList(userNames));
-
+        InfoController infoController = fxmlLoader.<InfoController>getController();
+        infoController.getInfoText().setText("Wybierz najpierw użytkownika !");
         setScene(parent);
+    }
 
-        setUserInState(AppState.userName);
-
+    private void showCrosswordEntriesForUser() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/table.fxml"));
+        Parent parent = fxmlLoader.load();
+        TableController tableController = fxmlLoader.<TableController>getController();
+        tableController.getUserTextLabel().setText("Hasła użytkownika " + AppState.userName);
+        setScene(parent);
     }
 
     private void setUserInState(String userName) {
@@ -171,6 +191,11 @@ public class MainController {
         } else {
             crosswordEntryService.saveCrossword(AppState.crosswordEntry);
             AppState.crosswordEntry = null;
+            FXMLLoader savedFxml = new FXMLLoader(getClass().getResource("/fxml/info.fxml"));
+            Parent parentCheck = savedFxml.load();
+            InfoController infoControllerCheck = savedFxml.<InfoController>getController();
+            infoControllerCheck.getInfoText().setText("Hasło Zapisane ! ");
+            setScene(parentCheck);
         }
     }
 
