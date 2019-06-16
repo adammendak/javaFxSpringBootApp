@@ -11,12 +11,4 @@ public class CrosswordTableRepresentationDTO {
     private IntegerProperty crossNumber;
     private StringProperty crossValue;
     private StringProperty crossDescription;
-
-    public CrosswordTableRepresentationDTO(IntegerProperty crossNumber,
-                                           StringProperty crossValue,
-                                           StringProperty crossDescription) {
-        this.crossNumber = crossNumber;
-        this.crossValue = crossValue;
-        this.crossDescription = crossDescription;
-    }
 }

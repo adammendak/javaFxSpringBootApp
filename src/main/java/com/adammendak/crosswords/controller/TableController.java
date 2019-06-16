@@ -1,6 +1,8 @@
 package com.adammendak.crosswords.controller;
 
 import com.adammendak.crosswords.domain.dto.CrosswordTableRepresentationDTO;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -38,6 +40,14 @@ public class TableController {
     public void setCrosswordEntries(ObservableList<CrosswordTableRepresentationDTO> crossList) {
         crossTable.getItems().clear();
         crossTable.setItems(crossList);
+
+        crossTable.setTableMenuButtonVisible(true);
+        crossNumber.setCellValueFactory(cellData ->
+                cellData.getValue().getCrossNumber().asObject());
+        crossValue.setCellValueFactory(cellData ->
+                cellData.getValue().getCrossValue());
+        crossDescription.setCellValueFactory(cellData ->
+                cellData.getValue().getCrossDescription());
     }
 
     @FXML
