@@ -48,7 +48,6 @@ public class CrosswordsApplication extends Application {
         primaryStage.setOnCloseRequest(
                 (e -> closeApplication(e)));
         primaryStage.show();
-
     }
 
     void closeApplication(WindowEvent e) {

@@ -12,15 +12,16 @@
    <left>
       <ToolBar minWidth="200.0" orientation="VERTICAL" prefHeight="453.0" prefWidth="209.0" styleClass="toolBar" BorderPane.alignment="CENTER">
         <items>
-          <Button fx:id="showCrosswordEntries" onAction="#showCrosswordEntries" mnemonicParsing="false" styleClass="menuButton" text="Pokaz hasla" textAlignment="CENTER" />
-            <Button fx:id="addCrosswordEntry" onAction="#addNewCrosswordEntry" mnemonicParsing="false" styleClass="menuButton" text="Dodaj hasło" />
-            <Button fx:id="cleanEntries" onAction="#cleanCrosswordEntries" mnemonicParsing="false" styleClass="menuButton" text="Wyczyść hasła" />
-            <Button fx:id="manageUsers" onAction="#manageUsers" mnemonicParsing="false"  text="Zmień użytkownika">
+          <Button fx:id="showCrosswordEntries" mnemonicParsing="false" onAction="#showCrosswordEntries" styleClass="menuButton" text="Pokaz hasla" textAlignment="CENTER" />
+            <Button fx:id="addCrosswordEntry" mnemonicParsing="false" onAction="#addNewCrosswordEntry" styleClass="menuButton" text="Dodaj hasło" />
+            <Button fx:id="cleanEntries" mnemonicParsing="false" onAction="#cleanCrosswordEntries" styleClass="menuButton" text="Wyczyść hasła" />
+            <Button fx:id="manageUsers" mnemonicParsing="false" onAction="#manageUsers" text="Zmień użytkownika">
                <styleClass>
                   <String fx:value="welcomeLabel" />
                   <String fx:value="menuButton" />
                </styleClass>
             </Button>
+            <Button fx:id="endApplication" onAction="#endApp" mnemonicParsing="false" prefHeight="27.0" prefWidth="204.0" styleClass="cancelButton" text="KONIEC" />
         </items>
       </ToolBar>
    </left>

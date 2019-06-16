@@ -79,6 +79,9 @@ public class MainController {
     private Button manageUsers;
 
     @FXML
+    private Button endApplication;
+
+    @FXML
     private void initialize() {
         author.setText(authorValue);
         date.setText(dateValue);
@@ -121,7 +124,6 @@ public class MainController {
 
         setScene(parent);
         setUserInState(AppState.userName);
-
     }
 
     @FXML
@@ -132,6 +134,13 @@ public class MainController {
         } else {
             setInfoMessage("Wybierz najpierw użytkownika !");
         }
+    }
+
+    @FXML
+    private void endApp() throws IOException {
+        setInfoMessage("Dziękuje za skorzystanie z apki !");
+        Stage stage = (Stage) endApplication.getScene().getWindow();
+        stage.close();
     }
 
     private void noUserSelected() throws IOException {
