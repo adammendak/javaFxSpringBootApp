@@ -1,6 +1,7 @@
 package com.adammendak.crosswords.controller;
 
-import com.adammendak.crosswords.domain.CrosswordEntry;
+import com.adammendak.crosswords.domain.dto.CrosswordTableRepresentationDTO;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,7 +12,6 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
-
 
 @RequiredArgsConstructor
 @Controller
@@ -26,14 +26,19 @@ public class TableController {
     private Label userTextLabel;
 
     @FXML
-    private TableView<CrosswordEntry> crossTable;
+    public TableView<CrosswordTableRepresentationDTO> crossTable;
 
     @FXML
-    private TableColumn<CrosswordEntry, Integer> crossNumber;
+    private TableColumn<CrosswordTableRepresentationDTO, Integer> crossNumber;
     @FXML
-    private TableColumn<CrosswordEntry, String> crossValue;
+    private TableColumn<CrosswordTableRepresentationDTO, String> crossValue;
     @FXML
-    private TableColumn<CrosswordEntry, String> crossDescription;
+    private TableColumn<CrosswordTableRepresentationDTO, String> crossDescription;
+
+    public void setCrosswordEntries(ObservableList<CrosswordTableRepresentationDTO> crossList) {
+        crossTable.getItems().clear();
+        crossTable.setItems(crossList);
+    }
 
     @FXML
     private void cancel() {

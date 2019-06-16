@@ -1,10 +1,14 @@
 package com.adammendak.crosswords.controller;
 
+import com.adammendak.crosswords.domain.CrosswordEntry;
 import com.adammendak.crosswords.domain.User;
+import com.adammendak.crosswords.domain.dto.CrosswordTableRepresentationDTO;
+import com.adammendak.crosswords.domain.mapper.CrosswordEntryToDTO;
 import com.adammendak.crosswords.service.CrosswordEntryService;
 import com.adammendak.crosswords.service.UserService;
 import com.adammendak.crosswords.utils.AppState;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +24,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -152,6 +157,13 @@ public class MainController {
         Parent parent = fxmlLoader.load();
         TableController tableController = fxmlLoader.<TableController>getController();
         tableController.getUserTextLabel().setText("Hasła użytkownika " + AppState.userName);
+
+        List<CrosswordEntry> entriesForUser = crosswordEntryService.getEntriesForUser(AppState.user);
+        List<CrosswordTableRepresentationDTO> dtoList = new ArrayList<>();
+        entriesForUser.forEach( e -> dtoList.add(CrosswordEntryToDTO.entityToDto(e)));
+
+        tableController.setCrosswordEntries(FXCollections.observableList(dtoList));
+
         setScene(parent);
     }
 
