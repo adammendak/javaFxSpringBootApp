@@ -23,10 +23,11 @@
    <content>
       <AnchorPane prefHeight="394.0" prefWidth="831.0">
          <children>
-            <TableView layoutX="6.0" prefHeight="350.0" prefWidth="823.0">
+            <TableView fx:id="crossTable" layoutX="6.0" prefHeight="350.0" prefWidth="823.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="crossNumber" prefWidth="36.0" text="#" />
+                <TableColumn fx:id="crossValue" prefWidth="242.0" text="Hasło" />
+                <TableColumn fx:id="crossDescription" prefWidth="542.0" text="Opis" />
               </columns>
             </TableView>
             <Button fx:id="cancelButton" layoutX="763.0" layoutY="364.0" mnemonicParsing="false" onAction="#cancel" styleClass="cancelButton" text="Wstecz" />
